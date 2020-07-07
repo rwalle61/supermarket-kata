@@ -1,13 +1,14 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 import Shelf from '../../components/Shelf';
 import Basket from '../../components/Basket';
 
 const App = () => {
   return (
-    <div>
+    <Container>
       <Shelf />
       <Basket />
-    </div>
+    </Container>
   );
 };
 

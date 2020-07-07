@@ -1,11 +1,14 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Button } from 'react-bootstrap';
+import css from '../../common.module.css';
 
 const ShelfItem = ({ name, addItemToBasket }) => (
-  <div>
-    <div>{name}</div>
-    <Button onClick={() => addItemToBasket(name)}>Add to Basket</Button>
-  </div>
+  <Row>
+    <Col className={css.centerVertically}>{name}</Col>
+    <Col className={css.alignEnd}>
+      <Button onClick={() => addItemToBasket(name)}>Add to Basket</Button>
+    </Col>
+  </Row>
 );
 
 export default ShelfItem;

@@ -1,17 +1,23 @@
 import React from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
 import BasketItem from '../BasketItem';
 import { getTotalPrice } from './Basket.utils';
+import css from '../../common.module.css';
 
 const Basket = ({ items }) => (
-  <div>
-    <div>Basket</div>
-    {Object.entries(items).map(([name, quantity]) => (
-      <BasketItem key={name} name={name} quantity={quantity} />
-    ))}
-    <div>
+  <div className='mt-4'>
+    <h2 className='text-center'>Basket</h2>
+    <ListGroup variant='flush'>
+      {Object.entries(items).map(([name, quantity]) => (
+        <ListGroup.Item key={name} className={css.narrow}>
+          <BasketItem name={name} quantity={quantity} />
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+    <h6 className='text-center'>
       Total:
       <b>{`£${getTotalPrice(items)}`}</b>
-    </div>
+    </h6>
   </div>
 );
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import css from '../../common.module.css';
 
 const BasketItem = ({
   name,
@@ -7,11 +8,15 @@ const BasketItem = ({
   addItemToBasket,
   removeItemFromBasket,
 }) => (
-  <div>
-    <div>{`${quantity} ${name}`}</div>
-    <Button onClick={() => addItemToBasket(name)}>+</Button>
-    <Button onClick={() => removeItemFromBasket(name)}>-</Button>
-  </div>
+  <Row>
+    <Col className={css.centerVertically}>{`${quantity} ${name}`}</Col>
+    <Col className={css.alignEnd}>
+      <ButtonGroup>
+        <Button onClick={() => addItemToBasket(name)}>+</Button>
+        <Button onClick={() => removeItemFromBasket(name)}>-</Button>
+      </ButtonGroup>
+    </Col>
+  </Row>
 );
 
 export default BasketItem;
