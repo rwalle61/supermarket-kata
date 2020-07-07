@@ -12,8 +12,8 @@ const BasketItem = ({
     <Col className={css.centerVertically}>{`${quantity} ${name}`}</Col>
     <Col className={css.alignEnd}>
       <ButtonGroup>
-        <Button onClick={() => addItemToBasket(name)}>+</Button>
         <Button onClick={() => removeItemFromBasket(name)}>-</Button>
+        <Button onClick={() => addItemToBasket(name)}>+</Button>
       </ButtonGroup>
     </Col>
   </Row>

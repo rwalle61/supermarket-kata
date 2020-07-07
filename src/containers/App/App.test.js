@@ -109,6 +109,21 @@ describe('App', () => {
         .closest('button');
       expect(basketItemDecrementButton).toBeInTheDocument();
     });
+    it('renders the "Remove Item" button after the "Add Item" button', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Beans');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+      userEvent.click(shelfItemButton);
+
+      const basketItem = screen.getByText('1 Beans');
+      const [button1, button2] = within(basketItem.parentElement).getAllByRole(
+        'button',
+      );
+      expect(button1).toHaveTextContent('-');
+      expect(button2).toHaveTextContent('+');
+    });
   });
   describe('when user adds multiple items to the basket', () => {
     it('renders 2 increments of an item in the basket', () => {
