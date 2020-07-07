@@ -1,5 +1,6 @@
 import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
+import PropTypes from 'prop-types';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
@@ -15,6 +16,9 @@ const render = (
   const Wrapper = ({ children }) => (
     <Provider store={store}>{children}</Provider>
   );
+  Wrapper.propTypes = {
+    children: PropTypes.object.isRequired,
+  };
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 };
 

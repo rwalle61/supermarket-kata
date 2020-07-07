@@ -1,5 +1,6 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
+import PropTypes from 'prop-types';
 import BasketItem from '../BasketItem';
 import { getTotalPrice } from './Basket.utils';
 import css from '../../common.module.css';
@@ -20,5 +21,9 @@ const Basket = ({ items }) => (
     </h6>
   </div>
 );
+
+Basket.propTypes = {
+  items: PropTypes.object.isRequired,
+};
 
 export default Basket;
