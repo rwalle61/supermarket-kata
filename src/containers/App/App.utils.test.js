@@ -1,4 +1,9 @@
-import { addItemToBasketPure, priceItems, priceItem } from './App.utils';
+import {
+  addItemToBasketPure,
+  removeItemFromBasketPure,
+  priceItems,
+  priceItem,
+} from './App.utils';
 
 describe('App.utils', () => {
   describe('addItemToBasketPure', () => {
@@ -44,13 +49,29 @@ describe('App.utils', () => {
       });
     });
     it('increments the existing oranges twice (verify float addition)', () => {
-      const basketItems0 = {
+      const basket0 = {
         Oranges: 0.2,
       };
-      const basketItems1 = addItemToBasketPure(basketItems0, 'Oranges');
-      const basketItems2 = addItemToBasketPure(basketItems1, 'Oranges');
-      expect(basketItems2).toEqual({
+      const basket1 = addItemToBasketPure(basket0, 'Oranges');
+      const basket2 = addItemToBasketPure(basket1, 'Oranges');
+      expect(basket2).toEqual({
         Oranges: 0.6,
+      });
+    });
+  });
+  describe('removeItemFromBasketPure', () => {
+    it('removes nothing from an empty basket', () => {
+      expect(removeItemFromBasketPure({}, 'Beans')).toEqual({});
+    });
+    it('removes an item from the basket when there is only 1 increment in the basket', () => {
+      expect(removeItemFromBasketPure({ Beans: 1 }, 'Beans')).toEqual({});
+    });
+    it('removes another item from the basket there is only 1 (different) increment in the basket', () => {
+      expect(removeItemFromBasketPure({ Oranges: 0.2 }, 'Oranges')).toEqual({});
+    });
+    it.skip('removes the correct item from the basket', () => {
+      expect(removeItemFromBasketPure({ Beans: 1, Coke: 1 }, 'Beans')).toEqual({
+        Coke: 1,
       });
     });
   });

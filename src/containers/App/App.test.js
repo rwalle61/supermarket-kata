@@ -177,7 +177,25 @@ describe('App', () => {
       });
     });
     describe.skip('when the basket contains multiple increments of the item', () => {
-      it('keeps the item in the basket, updates the item quantity and basket price', () => {});
+      it('keeps the item in the basket, updates the item quantity and basket price', () => {
+        render(<App />);
+        const shelfItem = screen.getByText('Beans');
+        const shelfItemButton = within(shelfItem.parentElement).getByRole(
+          'button',
+        );
+        userEvent.click(shelfItemButton);
+        userEvent.click(shelfItemButton);
+
+        const basketItem = screen.getByText('2 Beans');
+        const basketItemDecrementButton = within(basketItem.parentElement)
+          .getByText('-')
+          .closest('button');
+        userEvent.click(basketItemDecrementButton);
+
+        expect(screen.getByText('1 Beans')).toBeInTheDocument();
+        expect(screen.getByText('Total:')).toBeInTheDocument();
+        expect(screen.getByText('£0.50')).toBeInTheDocument();
+      });
     });
   });
 });
