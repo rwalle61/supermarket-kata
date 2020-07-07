@@ -8,5 +8,9 @@ describe('App', () => {
       render(<App />);
       expect(screen.getByText('Supermarket Items')).toBeInTheDocument();
     });
+    it('renders the "Basket" title', () => {
+      render(<App />);
+      expect(screen.getByText('Basket')).toBeInTheDocument();
+    });
   });
 });
