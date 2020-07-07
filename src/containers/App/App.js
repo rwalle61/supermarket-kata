@@ -14,8 +14,8 @@ const itemPricePerUnit = {
   Oranges: 1.99,
 };
 
-const priceItem = ([name]) => {
-  return itemPricePerUnit[name] * itemIncrementSizes[name];
+const priceItem = ([name, quantity]) => {
+  return itemPricePerUnit[name] * quantity;
 };
 
 const priceItems = (items) =>
@@ -33,15 +33,25 @@ const Item = ({ name, addItemToBasket }) => (
   </div>
 );
 
+export const getNewBasketItems = (basketItems, itemName) => {
+  const existingQuantity = Object.prototype.hasOwnProperty.call(
+    basketItems,
+    itemName,
+  )
+    ? basketItems[itemName]
+    : 0;
+  const newBasketItems = {
+    ...basketItems,
+    [itemName]: existingQuantity + itemIncrementSizes[itemName],
+  };
+  return newBasketItems;
+};
+
 const App = () => {
   const [basketItems, setBasketItems] = useState({});
 
   const addItemToBasket = (name) => {
-    const newBasketItems = {
-      ...basketItems,
-      [name]: itemIncrementSizes[name],
-    };
-    setBasketItems(newBasketItems);
+    setBasketItems(getNewBasketItems(basketItems, name));
   };
 
   return (
@@ -51,8 +61,8 @@ const App = () => {
         <Item key={name} name={name} addItemToBasket={addItemToBasket} />
       ))}
       <div>Basket</div>
-      {Object.entries(basketItems).map(([name]) => (
-        <Item key={name} name={`${itemIncrementSizes[name]} ${name}`} />
+      {Object.entries(basketItems).map(([name, quantity]) => (
+        <Item key={name} name={`${quantity} ${name}`} />
       ))}
       <div>
         Total:

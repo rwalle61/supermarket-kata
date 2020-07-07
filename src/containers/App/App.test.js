@@ -1,7 +1,29 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from './App';
+import App, { getNewBasketItems } from './App';
+
+describe('Utils', () => {
+  describe('getNewBasketItems', () => {
+    it('adds the item to the basket', () => {
+      expect(getNewBasketItems({}, 'Beans')).toEqual({
+        Beans: 1,
+      });
+    });
+    it('increments the existing beans', () => {
+      expect(
+        getNewBasketItems(
+          {
+            Beans: 1,
+          },
+          'Beans',
+        ),
+      ).toEqual({
+        Beans: 2,
+      });
+    });
+  });
+});
 
 describe('App', () => {
   describe('when app starts', () => {
@@ -79,7 +101,7 @@ describe('App', () => {
     });
   });
   describe('when user adds 2 of an item from shelf to the basket', () => {
-    it.skip('renders 2 increments of that item in the basket', () => {
+    it('renders 2 increments of that item in the basket', () => {
       render(<App />);
       const shelfItem = screen.getByText('Beans');
       const shelfItemButton = within(shelfItem.parentElement).getByRole(
