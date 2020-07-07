@@ -14,12 +14,15 @@ const itemPricePerUnit = {
   Oranges: 1.99,
 };
 
-const priceItem = (name) => {
+const priceItem = ([name]) => {
   return itemPricePerUnit[name] * itemIncrementSizes[name];
 };
 
 const priceItems = (items) =>
-  items.reduce((subtotal, item) => subtotal + priceItem(item), 0);
+  Object.entries(items).reduce(
+    (subtotal, item) => subtotal + priceItem(item),
+    0,
+  );
 
 const getTotalPrice = (items) => priceItems(items).toFixed(2);
 
@@ -31,10 +34,14 @@ const Item = ({ name, addItemToBasket }) => (
 );
 
 const App = () => {
-  const [basketItems, setBasketItems] = useState([]);
+  const [basketItems, setBasketItems] = useState({});
 
   const addItemToBasket = (name) => {
-    setBasketItems(basketItems.concat([name]));
+    const newBasketItems = {
+      ...basketItems,
+      [name]: itemIncrementSizes[name],
+    };
+    setBasketItems(newBasketItems);
   };
 
   return (
@@ -44,7 +51,7 @@ const App = () => {
         <Item key={name} name={name} addItemToBasket={addItemToBasket} />
       ))}
       <div>Basket</div>
-      {basketItems.map((name) => (
+      {Object.entries(basketItems).map(([name]) => (
         <Item key={name} name={`${itemIncrementSizes[name]} ${name}`} />
       ))}
       <div>

@@ -78,4 +78,19 @@ describe('App', () => {
       expect(screen.getByText('£0.40')).toBeInTheDocument();
     });
   });
+  describe('when user adds 2 of an item from shelf to the basket', () => {
+    it.skip('renders 2 increments of that item in the basket', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Beans');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+
+      userEvent.click(shelfItemButton);
+      userEvent.click(shelfItemButton);
+
+      const basketItem = screen.getByText('2 Beans');
+      expect(basketItem).toBeInTheDocument();
+    });
+  });
 });
