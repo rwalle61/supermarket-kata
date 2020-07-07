@@ -9,6 +9,10 @@ const itemIncrementSizes = {
   Oranges: 0.2,
 };
 
+const priceItems = (items) => {
+  return items.length ? '0.50' : '0.00';
+};
+
 const Item = ({ name, addItemToBasket }) => (
   <div>
     <div>{name}</div>
@@ -34,7 +38,7 @@ const App = () => {
       ))}
       <div>
         Total:
-        <b>£0.00</b>
+        <b>{`£${priceItems(basketItems)}`}</b>
       </div>
     </div>
   );
