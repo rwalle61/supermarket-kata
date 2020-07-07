@@ -10,8 +10,10 @@ const itemIncrementSizes = {
 };
 
 const priceItems = (items) => {
-  return items.length ? '0.50' : '0.00';
+  return items.length ? 0.5 : 0;
 };
+
+const getTotalPrice = (items) => priceItems(items).toFixed(2);
 
 const Item = ({ name, addItemToBasket }) => (
   <div>
@@ -26,6 +28,7 @@ const App = () => {
   const addItemToBasket = (name) => {
     setBasketItems(basketItems.concat([name]));
   };
+
   return (
     <div>
       <div>Supermarket Items</div>
@@ -38,7 +41,7 @@ const App = () => {
       ))}
       <div>
         Total:
-        <b>{`£${priceItems(basketItems)}`}</b>
+        <b>{`£${getTotalPrice(basketItems)}`}</b>
       </div>
     </div>
   );
