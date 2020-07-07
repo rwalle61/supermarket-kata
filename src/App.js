@@ -4,6 +4,10 @@ const App = () => (
   <div>
     <div>Supermarket Items</div>
     <div>Basket</div>
+    <div>
+      Total:
+      <b>£0.00</b>
+    </div>
   </div>
 );
 

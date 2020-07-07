@@ -12,5 +12,10 @@ describe('App', () => {
       render(<App />);
       expect(screen.getByText('Basket')).toBeInTheDocument();
     });
+    it('renders the default basket price (£0.00)', () => {
+      render(<App />);
+      expect(screen.getByText('Total:')).toBeInTheDocument();
+      expect(screen.getByText(/£0.00/)).toBeInTheDocument();
+    });
   });
 });
