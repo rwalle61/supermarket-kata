@@ -9,9 +9,17 @@ const itemIncrementSizes = {
   Oranges: 0.2,
 };
 
-const priceItems = (items) => {
-  return items.length ? 0.5 : 0;
+const itemPricePerUnit = {
+  Beans: 0.5,
+  Oranges: 1.99,
 };
+
+const priceItem = (name) => {
+  return itemPricePerUnit[name] * itemIncrementSizes[name];
+};
+
+const priceItems = (items) =>
+  items.reduce((subtotal, item) => subtotal + priceItem(item), 0);
 
 const getTotalPrice = (items) => priceItems(items).toFixed(2);
 

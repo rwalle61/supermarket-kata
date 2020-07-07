@@ -65,5 +65,17 @@ describe('App', () => {
       expect(screen.getByText('Total:')).toBeInTheDocument();
       expect(screen.getByText('£0.50')).toBeInTheDocument();
     });
+    it('updates the basket price (for a different item)', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Oranges');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+
+      userEvent.click(shelfItemButton);
+
+      expect(screen.getByText('Total:')).toBeInTheDocument();
+      expect(screen.getByText('£0.40')).toBeInTheDocument();
+    });
   });
 });
