@@ -24,6 +24,10 @@ export const addItemToBasketPure = (basketItems, itemName) => {
   return newBasketItems;
 };
 
+export const removeItemFromBasketPure = () => {
+  return {};
+};
+
 const itemPricePerUnit = {
   Beans: 0.5,
   Coke: 0.7,

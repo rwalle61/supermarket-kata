@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/button';
-import { getTotalPrice, addItemToBasketPure } from './App.utils';
+import {
+  getTotalPrice,
+  addItemToBasketPure,
+  removeItemFromBasketPure,
+} from './App.utils';
 
 const availableItems = ['Beans', 'Coke', 'Oranges'];
 
@@ -11,11 +15,16 @@ const ShelfItem = ({ name, addItemToBasket }) => (
   </div>
 );
 
-const BasketItem = ({ name, quantity, addItemToBasket }) => (
+const BasketItem = ({
+  name,
+  quantity,
+  addItemToBasket,
+  removeItemFromBasket,
+}) => (
   <div>
     <div>{`${quantity} ${name}`}</div>
     <Button onClick={() => addItemToBasket(name)}>+</Button>
-    <Button onClick={() => { }}>-</Button>
+    <Button onClick={() => removeItemFromBasket(name)}>-</Button>
   </div>
 );
 
@@ -24,6 +33,9 @@ const App = () => {
 
   const addItemToThisBasket = (name) => {
     setBasketItems(addItemToBasketPure(basketItems, name));
+  };
+  const removeItemFromThisBasket = (name) => {
+    setBasketItems(removeItemFromBasketPure(basketItems, name));
   };
 
   return (
@@ -43,6 +55,7 @@ const App = () => {
           name={name}
           quantity={quantity}
           addItemToBasket={addItemToThisBasket}
+          removeItemFromBasket={removeItemFromThisBasket}
         />
       ))}
       <div>
