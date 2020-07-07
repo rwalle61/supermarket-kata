@@ -4,6 +4,10 @@ const itemIncrementSizes = {
   Oranges: 0.2,
 };
 
+const strip = (num) => parseFloat(num.toPrecision(12));
+
+const addFloat = (a, b) => strip(a + b);
+
 // eslint-disable-next-line import/prefer-default-export
 export const getNewBasketItems = (basketItems, itemName) => {
   const existingQuantity = Object.prototype.hasOwnProperty.call(
@@ -14,7 +18,7 @@ export const getNewBasketItems = (basketItems, itemName) => {
     : 0;
   const newBasketItems = {
     ...basketItems,
-    [itemName]: existingQuantity + itemIncrementSizes[itemName],
+    [itemName]: addFloat(existingQuantity, itemIncrementSizes[itemName]),
   };
   return newBasketItems;
 };

@@ -43,5 +43,15 @@ describe('App.utils', () => {
         Oranges: 0.4,
       });
     });
+    it('increments the existing oranges twice (verify float addition)', () => {
+      const basketItems0 = {
+        Oranges: 0.2,
+      };
+      const basketItems1 = getNewBasketItems(basketItems0, 'Oranges');
+      const basketItems2 = getNewBasketItems(basketItems1, 'Oranges');
+      expect(basketItems2).toEqual({
+        Oranges: 0.6,
+      });
+    });
   });
 });
