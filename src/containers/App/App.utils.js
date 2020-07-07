@@ -26,8 +26,19 @@ export const addItemToBasketPure = (basket, itemName) => {
   return newBasket;
 };
 
-export const removeItemFromBasketPure = () => {
-  return {};
+export const removeItemFromBasketPure = (basket, itemName) => {
+  const existingQuantity = basket[itemName];
+  const decrement = itemIncrementSizes[itemName];
+  const newQuantity = addFloat(existingQuantity, -decrement);
+  const { [itemName]: item, ...rest } = basket;
+  const newBasket =
+    newQuantity > 0
+      ? {
+          ...basket,
+          [itemName]: newQuantity,
+        }
+      : rest;
+  return newBasket;
 };
 
 const itemPricePerUnit = {

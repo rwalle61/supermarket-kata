@@ -176,7 +176,7 @@ describe('App', () => {
         expect(screen.getByText('£0.00')).toBeInTheDocument();
       });
     });
-    describe.skip('when the basket contains multiple increments of the item', () => {
+    describe('when the basket contains multiple increments of the item', () => {
       it('keeps the item in the basket, updates the item quantity and basket price', () => {
         render(<App />);
         const shelfItem = screen.getByText('Beans');

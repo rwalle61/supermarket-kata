@@ -69,9 +69,34 @@ describe('App.utils', () => {
     it('removes another item from the basket there is only 1 (different) increment in the basket', () => {
       expect(removeItemFromBasketPure({ Oranges: 0.2 }, 'Oranges')).toEqual({});
     });
-    it.skip('removes the correct item from the basket', () => {
+    it('removes the correct item from the basket', () => {
       expect(removeItemFromBasketPure({ Beans: 1, Coke: 1 }, 'Beans')).toEqual({
         Coke: 1,
+      });
+    });
+    it('decrements the existing Beans', () => {
+      expect(removeItemFromBasketPure({ Beans: 2 }, 'Beans')).toEqual({
+        Beans: 1,
+      });
+    });
+    it('decrements the existing Coke', () => {
+      expect(removeItemFromBasketPure({ Coke: 2 }, 'Coke')).toEqual({
+        Coke: 1,
+      });
+    });
+    it('decrements the existing Oranges', () => {
+      expect(removeItemFromBasketPure({ Oranges: 1 }, 'Oranges')).toEqual({
+        Oranges: 0.8,
+      });
+    });
+    it('decrements the existing Oranges twice (verify float subtraction)', () => {
+      const basket0 = {
+        Oranges: 1,
+      };
+      const basket1 = removeItemFromBasketPure(basket0, 'Oranges');
+      const basket2 = removeItemFromBasketPure(basket1, 'Oranges');
+      expect(basket2).toEqual({
+        Oranges: 0.6,
       });
     });
   });
