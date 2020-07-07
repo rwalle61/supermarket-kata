@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
@@ -8,10 +8,13 @@ describe('App', () => {
       render(<App />);
       expect(screen.getByText('Supermarket Items')).toBeInTheDocument();
     });
-    it('renders the 3 default items in the supermarket', () => {
+    it('renders the 3 default items in the supermarket with buttons to add them to basket', () => {
       render(<App />);
       ['Beans', 'Coke', 'Oranges'].forEach((itemName) => {
-        expect(screen.getByText(itemName)).toBeInTheDocument();
+        const shelfItem = screen.getByText(itemName);
+        expect(shelfItem).toBeInTheDocument();
+        const button = within(shelfItem.parentElement).getByRole('button');
+        expect(button).toHaveTextContent('Add to Basket');
       });
     });
     it('renders the "Basket" title', () => {
