@@ -1,15 +1,15 @@
-import { getNewBasketItems, priceItems, priceItem } from './App.utils';
+import { addItemToBasketPure, priceItems, priceItem } from './App.utils';
 
 describe('App.utils', () => {
-  describe('getNewBasketItems', () => {
+  describe('addItemToBasketPure', () => {
     it('adds the item to the basket', () => {
-      expect(getNewBasketItems({}, 'Beans')).toEqual({
+      expect(addItemToBasketPure({}, 'Beans')).toEqual({
         Beans: 1,
       });
     });
     it('increments the existing beans', () => {
       expect(
-        getNewBasketItems(
+        addItemToBasketPure(
           {
             Beans: 1,
           },
@@ -21,7 +21,7 @@ describe('App.utils', () => {
     });
     it('increments the existing coke', () => {
       expect(
-        getNewBasketItems(
+        addItemToBasketPure(
           {
             Coke: 1,
           },
@@ -33,7 +33,7 @@ describe('App.utils', () => {
     });
     it('increments the existing oranges', () => {
       expect(
-        getNewBasketItems(
+        addItemToBasketPure(
           {
             Oranges: 0.2,
           },
@@ -47,8 +47,8 @@ describe('App.utils', () => {
       const basketItems0 = {
         Oranges: 0.2,
       };
-      const basketItems1 = getNewBasketItems(basketItems0, 'Oranges');
-      const basketItems2 = getNewBasketItems(basketItems1, 'Oranges');
+      const basketItems1 = addItemToBasketPure(basketItems0, 'Oranges');
+      const basketItems2 = addItemToBasketPure(basketItems1, 'Oranges');
       expect(basketItems2).toEqual({
         Oranges: 0.6,
       });

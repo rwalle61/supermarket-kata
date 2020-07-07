@@ -10,7 +10,7 @@ const strip = (num) => parseFloat(num.toPrecision(12));
 
 const addFloat = (a, b) => strip(a + b);
 
-export const getNewBasketItems = (basketItems, itemName) => {
+export const addItemToBasketPure = (basketItems, itemName) => {
   const existingQuantity = Object.prototype.hasOwnProperty.call(
     basketItems,
     itemName,
