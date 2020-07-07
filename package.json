@@ -17,6 +17,7 @@
     "test:coverage": "yarn test --coverage",
     "test:coverage:browse": "CI=true yarn test:coverage; open coverage/lcov-report/index.html",
     "test:precommit": "yarn prettier && yarn lint && CI=true yarn test:coverage && yarn lint",
+    "test:ci": "yarn test:precommit",
     "eject": "react-scripts eject",
     "lint": "eslint --fix .",
     "prettier": "prettier --write . --ignore-path \".gitignore\""
