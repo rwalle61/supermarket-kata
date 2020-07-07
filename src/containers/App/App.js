@@ -3,6 +3,12 @@ import Button from 'react-bootstrap/button';
 
 const availableItems = ['Beans', 'Coke', 'Oranges'];
 
+const itemIncrementSizes = {
+  Beans: 1,
+  Coke: 1,
+  Oranges: 0.2,
+};
+
 const Item = ({ name, addItemToBasket }) => (
   <div>
     <div>{name}</div>
@@ -24,7 +30,7 @@ const App = () => {
       ))}
       <div>Basket</div>
       {basketItems.map((name) => (
-        <Item key={name} name={`${name === 'Oranges' ? 0.2 : 1} ${name}`} />
+        <Item key={name} name={`${itemIncrementSizes[name]} ${name}`} />
       ))}
       <div>
         Total:

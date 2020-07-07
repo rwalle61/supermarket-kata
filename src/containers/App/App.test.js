@@ -25,37 +25,31 @@ describe('App', () => {
     it('renders the default basket price (£0.00)', () => {
       render(<App />);
       expect(screen.getByText('Total:')).toBeInTheDocument();
-      expect(screen.getByText(/£0.00/)).toBeInTheDocument();
+      expect(screen.getByText('£0.00')).toBeInTheDocument();
     });
   });
   describe('when user adds an item from shelf to the basket', () => {
     it('renders that item in the basket', () => {
-      // arrange
       render(<App />);
       const shelfItem = screen.getByText('Beans');
       const shelfItemButton = within(shelfItem.parentElement).getByRole(
         'button',
       );
 
-      // act
       userEvent.click(shelfItemButton);
 
-      // assert
       const basketItem = screen.getByText('1 Beans');
       expect(basketItem).toBeInTheDocument();
     });
     it('renders a different item in the basket (with a different quantity)', () => {
-      // arrange
       render(<App />);
       const shelfItem = screen.getByText('Oranges');
       const shelfItemButton = within(shelfItem.parentElement).getByRole(
         'button',
       );
 
-      // act
       userEvent.click(shelfItemButton);
 
-      // assert
       const basketItem = screen.getByText('0.2 Oranges');
       expect(basketItem).toBeInTheDocument();
     });
