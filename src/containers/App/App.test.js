@@ -94,13 +94,10 @@ describe('App', () => {
       const newBasketItems = screen.getByText('Basket').parentElement;
       const newBasketItem = within(newBasketItems).getByText('2 Beans');
       expect(newBasketItem).toBeInTheDocument();
-
-      expect(screen.getByText('Total:')).toBeInTheDocument();
-      expect(screen.getByText('£1.00')).toBeInTheDocument();
     });
   });
-  describe('when user adds 2 of an item from shelf to the basket', () => {
-    it('renders 2 increments of that item in the basket', () => {
+  describe('when user adds multiple items to the basket', () => {
+    it('renders 2 increments of an item in the basket', () => {
       render(<App />);
       const shelfItem = screen.getByText('Beans');
       const shelfItemButton = within(shelfItem.parentElement).getByRole(
@@ -112,6 +109,38 @@ describe('App', () => {
 
       const basketItem = screen.getByText('2 Beans');
       expect(basketItem).toBeInTheDocument();
+    });
+    it('renders 2 basket items and updates the price correctly (no discount)', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Beans');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+
+      userEvent.click(shelfItemButton);
+      userEvent.click(shelfItemButton);
+
+      const basketItem = screen.getByText('2 Beans');
+      expect(basketItem).toBeInTheDocument();
+
+      expect(screen.getByText('Total:')).toBeInTheDocument();
+      expect(screen.getByText('£1.00')).toBeInTheDocument();
+    });
+    it('renders 2 basket items and updates the price correctly (with discount)', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Coke');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+
+      userEvent.click(shelfItemButton);
+      userEvent.click(shelfItemButton);
+
+      const basketItem = screen.getByText('2 Coke');
+      expect(basketItem).toBeInTheDocument();
+
+      expect(screen.getByText('Total:')).toBeInTheDocument();
+      expect(screen.getByText('£1.00')).toBeInTheDocument();
     });
   });
 });
