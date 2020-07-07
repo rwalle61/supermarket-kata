@@ -3,11 +3,11 @@ import ShelfItem from '../ShelfItem';
 
 const availableItems = ['Beans', 'Coke', 'Oranges'];
 
-const Shelf = ({ addItemToBasket }) => (
+const Shelf = () => (
   <div>
     <div>Supermarket Items</div>
     {availableItems.map((name) => (
-      <ShelfItem key={name} name={name} addItemToBasket={addItemToBasket} />
+      <ShelfItem key={name} name={name} />
     ))}
   </div>
 );
