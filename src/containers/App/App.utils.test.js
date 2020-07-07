@@ -69,8 +69,13 @@ describe('App.utils', () => {
     it('prices 2 beans at 1', () => {
       expect(priceItems({ Beans: 2 })).toEqual(1);
     });
+    it.skip('prices 3 beans at 1 (3 for the price of 2)', () => {
+      expect(priceItems({ Beans: 3 })).toEqual(1);
+    });
     it('prices 1 coke at 0.7', () => {
       expect(priceItems({ Coke: 1 })).toEqual(0.7);
+    });
+      expect(priceItems({ Coke: 2 })).toEqual(1);
     });
     it('prices 1 oranges at 1.99', () => {
       expect(priceItems({ Oranges: 1 })).toEqual(1.99);

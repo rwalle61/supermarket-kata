@@ -30,8 +30,25 @@ const itemPricePerUnit = {
   Oranges: 1.99,
 };
 
+const getPriceBeans = (quantity) => {
+  return itemPricePerUnit.Beans * quantity;
+};
+const getPriceCoke = (quantity) => {
+  return itemPricePerUnit.Coke * quantity;
+};
+const getPriceOranges = (quantity) => {
+  return itemPricePerUnit.Oranges * quantity;
+};
+
+const getPrice = {
+  Beans: getPriceBeans,
+  Coke: getPriceCoke,
+  Oranges: getPriceOranges,
+};
+
 export const priceItem = ([name, quantity]) => {
-  return roundTo(itemPricePerUnit[name] * quantity, 2);
+  const price = getPrice[name](quantity);
+  return roundTo(price, 2);
 };
 
 export const priceItems = (items) =>
