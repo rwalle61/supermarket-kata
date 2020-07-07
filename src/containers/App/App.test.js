@@ -29,7 +29,7 @@ describe('App', () => {
     });
   });
   describe('when user adds an item from shelf to the basket', () => {
-    it.skip('renders that item in the basket', () => {
+    it('renders that item in the basket', () => {
       // arrange
       render(<App />);
       const shelfItem = screen.getByText('Beans');

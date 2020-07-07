@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/button';
 
-const Item = ({ name }) => (
+const availableItems = ['Beans', 'Coke', 'Oranges'];
+
+const Item = ({ name, addItemToBasket }) => (
   <div>
     <div>{name}</div>
-    <Button>Add to Basket</Button>
+    <Button onClick={() => addItemToBasket(name)}>Add to Basket</Button>
   </div>
 );
 
-const App = () => (
-  <div>
-    <div>Supermarket Items</div>
-    <Item name='Beans' />
-    <Item name='Coke' />
-    <Item name='Oranges' />
-    <div>Basket</div>
+const App = () => {
+  const [basketItems, setBasketItems] = useState([]);
+
+  const addItemToBasket = (name) => {
+    setBasketItems(basketItems.concat([name]));
+  };
+  return (
     <div>
-      Total:
-      <b>£0.00</b>
+      <div>Supermarket Items</div>
+      {availableItems.map((name) => (
+        <Item key={name} name={name} addItemToBasket={addItemToBasket} />
+      ))}
+      <div>Basket</div>
+      {basketItems.map((name) => (
+        <Item key={name} name={`1 ${name}`} />
+      ))}
+      <div>
+        Total:
+        <b>£0.00</b>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default App;
