@@ -95,6 +95,20 @@ describe('App', () => {
       const newBasketItem = within(newBasketItems).getByText('2 Beans');
       expect(newBasketItem).toBeInTheDocument();
     });
+    it('renders a button to remove an item from the basket', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Beans');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+      userEvent.click(shelfItemButton);
+
+      const basketItem = screen.getByText('1 Beans');
+      const basketItemDecrementButton = within(basketItem.parentElement)
+        .getByText('-')
+        .closest('button');
+      expect(basketItemDecrementButton).toBeInTheDocument();
+    });
   });
   describe('when user adds multiple items to the basket', () => {
     it('renders 2 increments of an item in the basket', () => {
@@ -141,6 +155,14 @@ describe('App', () => {
 
       expect(screen.getByText('Total:')).toBeInTheDocument();
       expect(screen.getByText('£1.00')).toBeInTheDocument();
+    });
+  });
+  describe.skip('when user removes an item from the basket', () => {
+    describe('when the basket contains multiple increments of the item', () => {
+      it('keeps the item in the basket, updates the item quantity and basket price', () => {});
+    });
+    describe('when the basket contains just 1 increment of the item', () => {
+      it('removes the item from the basket and updates the basket price', () => {});
     });
   });
 });

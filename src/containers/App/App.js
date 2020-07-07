@@ -15,6 +15,7 @@ const BasketItem = ({ name, quantity, addItemToBasket }) => (
   <div>
     <div>{`${quantity} ${name}`}</div>
     <Button onClick={() => addItemToBasket(name)}>+</Button>
+    <Button onClick={() => {}}>-</Button>
   </div>
 );
 
