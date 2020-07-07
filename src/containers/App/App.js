@@ -1,30 +1,8 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/button';
+import { getTotalPrice, getNewBasketItems } from './App.utils';
 
 const availableItems = ['Beans', 'Coke', 'Oranges'];
-
-const itemIncrementSizes = {
-  Beans: 1,
-  Coke: 1,
-  Oranges: 0.2,
-};
-
-const itemPricePerUnit = {
-  Beans: 0.5,
-  Oranges: 1.99,
-};
-
-const priceItem = ([name, quantity]) => {
-  return itemPricePerUnit[name] * quantity;
-};
-
-const priceItems = (items) =>
-  Object.entries(items).reduce(
-    (subtotal, item) => subtotal + priceItem(item),
-    0,
-  );
-
-const getTotalPrice = (items) => priceItems(items).toFixed(2);
 
 const Item = ({ name, addItemToBasket }) => (
   <div>
@@ -32,20 +10,6 @@ const Item = ({ name, addItemToBasket }) => (
     <Button onClick={() => addItemToBasket(name)}>Add to Basket</Button>
   </div>
 );
-
-export const getNewBasketItems = (basketItems, itemName) => {
-  const existingQuantity = Object.prototype.hasOwnProperty.call(
-    basketItems,
-    itemName,
-  )
-    ? basketItems[itemName]
-    : 0;
-  const newBasketItems = {
-    ...basketItems,
-    [itemName]: existingQuantity + itemIncrementSizes[itemName],
-  };
-  return newBasketItems;
-};
 
 const App = () => {
   const [basketItems, setBasketItems] = useState({});
