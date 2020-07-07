@@ -8,6 +8,12 @@ describe('App', () => {
       render(<App />);
       expect(screen.getByText('Supermarket Items')).toBeInTheDocument();
     });
+    it('renders the 3 default items in the supermarket', () => {
+      render(<App />);
+      ['Beans', 'Coke', 'Oranges'].forEach((itemName) => {
+        expect(screen.getByText(itemName)).toBeInTheDocument();
+      });
+    });
     it('renders the "Basket" title', () => {
       render(<App />);
       expect(screen.getByText('Basket')).toBeInTheDocument();
