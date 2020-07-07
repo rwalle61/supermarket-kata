@@ -43,3 +43,10 @@ export const itemIncrementSizes = {
 };
 
 export const availableItems = Object.keys(itemIncrementSizes);
+
+export const getUnit = (itemName) => {
+  if (itemName === 'Oranges') {
+    return 'kg';
+  }
+  return '';
+};

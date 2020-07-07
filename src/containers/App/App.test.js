@@ -41,7 +41,7 @@ describe('App', () => {
       const basketItem = screen.getByText('1 Beans');
       expect(basketItem).toBeInTheDocument();
     });
-    it('renders a different item in the basket (with a different quantity)', () => {
+    it('renders a different item in the basket (with a different quantity and unit)', () => {
       render(<App />);
       const shelfItem = screen.getByText('Oranges');
       const shelfItemButton = within(shelfItem.parentElement).getByRole(
@@ -50,7 +50,7 @@ describe('App', () => {
 
       userEvent.click(shelfItemButton);
 
-      const basketItem = screen.getByText('0.2 Oranges');
+      const basketItem = screen.getByText('0.2kg Oranges');
       expect(basketItem).toBeInTheDocument();
     });
     it('updates the basket price', () => {
