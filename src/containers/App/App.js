@@ -24,7 +24,7 @@ const App = () => {
       ))}
       <div>Basket</div>
       {basketItems.map((name) => (
-        <Item key={name} name={`1 ${name}`} />
+        <Item key={name} name={`${name === 'Oranges' ? 0.2 : 1} ${name}`} />
       ))}
       <div>
         Total:

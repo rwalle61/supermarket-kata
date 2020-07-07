@@ -44,5 +44,20 @@ describe('App', () => {
       const basketItem = screen.getByText('1 Beans');
       expect(basketItem).toBeInTheDocument();
     });
+    it('renders a different item in the basket (with a different quantity)', () => {
+      // arrange
+      render(<App />);
+      const shelfItem = screen.getByText('Oranges');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+
+      // act
+      userEvent.click(shelfItemButton);
+
+      // assert
+      const basketItem = screen.getByText('0.2 Oranges');
+      expect(basketItem).toBeInTheDocument();
+    });
   });
 });
