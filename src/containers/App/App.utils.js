@@ -8,7 +8,6 @@ const strip = (num) => parseFloat(num.toPrecision(12));
 
 const addFloat = (a, b) => strip(a + b);
 
-// eslint-disable-next-line import/prefer-default-export
 export const getNewBasketItems = (basketItems, itemName) => {
   const existingQuantity = Object.prototype.hasOwnProperty.call(
     basketItems,
@@ -25,6 +24,7 @@ export const getNewBasketItems = (basketItems, itemName) => {
 
 const itemPricePerUnit = {
   Beans: 0.5,
+  Coke: 0.7,
   Oranges: 1.99,
 };
 
@@ -32,7 +32,7 @@ const priceItem = ([name, quantity]) => {
   return itemPricePerUnit[name] * quantity;
 };
 
-const priceItems = (items) =>
+export const priceItems = (items) =>
   Object.entries(items).reduce(
     (subtotal, item) => subtotal + priceItem(item),
     0,
