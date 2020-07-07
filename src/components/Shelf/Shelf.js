@@ -1,7 +1,6 @@
 import React from 'react';
 import ShelfItem from '../ShelfItem';
-
-const availableItems = ['Beans', 'Coke', 'Oranges'];
+import { availableItems } from '../../data';
 
 const Shelf = () => (
   <div>

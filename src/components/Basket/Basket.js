@@ -1,6 +1,6 @@
 import React from 'react';
 import BasketItem from '../BasketItem';
-import { getTotalPrice } from '../../containers/App/App.utils';
+import { getTotalPrice } from './Basket.utils';
 
 const Basket = ({ items }) => (
   <div>
