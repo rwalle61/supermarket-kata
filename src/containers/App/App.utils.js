@@ -1,3 +1,5 @@
+import roundTo from 'round-to';
+
 const itemIncrementSizes = {
   Beans: 1,
   Coke: 1,
@@ -28,8 +30,8 @@ const itemPricePerUnit = {
   Oranges: 1.99,
 };
 
-const priceItem = ([name, quantity]) => {
-  return itemPricePerUnit[name] * quantity;
+export const priceItem = ([name, quantity]) => {
+  return roundTo(itemPricePerUnit[name] * quantity, 2);
 };
 
 export const priceItems = (items) =>

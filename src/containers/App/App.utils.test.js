@@ -1,4 +1,4 @@
-import { getNewBasketItems, priceItems } from './App.utils';
+import { getNewBasketItems, priceItems, priceItem } from './App.utils';
 
 describe('App.utils', () => {
   describe('getNewBasketItems', () => {
@@ -52,6 +52,11 @@ describe('App.utils', () => {
       expect(basketItems2).toEqual({
         Oranges: 0.6,
       });
+    });
+  });
+  describe('priceItem', () => {
+    it('prices items to 2DP', () => {
+      expect(priceItem(['Oranges', 0.1234])).toEqual(0.25);
     });
   });
   describe('priceItems', () => {
