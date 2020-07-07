@@ -31,11 +31,27 @@ const itemPricePerUnit = {
 };
 
 const getPriceBeans = (quantity) => {
-  return itemPricePerUnit.Beans * quantity;
+  const basePricePerUnit = itemPricePerUnit.Beans;
+  const numUnitsPerOffer = 3;
+  const pricePerOffer = 2 * basePricePerUnit;
+  const numOffersSatisfied = Math.floor(quantity / numUnitsPerOffer);
+  const remainder = quantity % numUnitsPerOffer;
+  const price =
+    numOffersSatisfied * pricePerOffer + remainder * basePricePerUnit;
+  return price;
 };
+
 const getPriceCoke = (quantity) => {
-  return itemPricePerUnit.Coke * quantity;
+  const basePricePerUnit = itemPricePerUnit.Coke;
+  const numUnitsPerOffer = 2;
+  const pricePerOffer = 1;
+  const numOffersSatisfied = Math.floor(quantity / numUnitsPerOffer);
+  const remainder = quantity % numUnitsPerOffer;
+  const price =
+    numOffersSatisfied * pricePerOffer + remainder * basePricePerUnit;
+  return price;
 };
+
 const getPriceOranges = (quantity) => {
   return itemPricePerUnit.Oranges * quantity;
 };
