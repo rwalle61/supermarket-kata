@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import {
-  getTotalPrice,
-  addItemToBasketPure,
-  removeItemFromBasketPure,
-} from './App.utils';
-import BasketItem from '../../components/BasketItem';
-import ShelfItem from '../../components/ShelfItem';
-
-const availableItems = ['Beans', 'Coke', 'Oranges'];
+import { addItemToBasketPure, removeItemFromBasketPure } from './App.utils';
+import Shelf from '../../components/Shelf';
+import Basket from '../../components/Basket';
 
 const App = () => {
   const [basketItems, setBasketItems] = useState({});
@@ -21,28 +15,12 @@ const App = () => {
 
   return (
     <div>
-      <div>Supermarket Items</div>
-      {availableItems.map((name) => (
-        <ShelfItem
-          key={name}
-          name={name}
-          addItemToBasket={addItemToThisBasket}
-        />
-      ))}
-      <div>Basket</div>
-      {Object.entries(basketItems).map(([name, quantity]) => (
-        <BasketItem
-          key={name}
-          name={name}
-          quantity={quantity}
-          addItemToBasket={addItemToThisBasket}
-          removeItemFromBasket={removeItemFromThisBasket}
-        />
-      ))}
-      <div>
-        Total:
-        <b>{`£${getTotalPrice(basketItems)}`}</b>
-      </div>
+      <Shelf addItemToBasket={addItemToThisBasket} />
+      <Basket
+        items={basketItems}
+        addItemToBasket={addItemToThisBasket}
+        removeItemFromBasket={removeItemFromThisBasket}
+      />
     </div>
   );
 };
