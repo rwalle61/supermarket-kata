@@ -1,32 +1,13 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/button';
 import {
   getTotalPrice,
   addItemToBasketPure,
   removeItemFromBasketPure,
 } from './App.utils';
+import BasketItem from '../../components/BasketItem';
+import ShelfItem from '../../components/ShelfItem';
 
 const availableItems = ['Beans', 'Coke', 'Oranges'];
-
-const ShelfItem = ({ name, addItemToBasket }) => (
-  <div>
-    <div>{name}</div>
-    <Button onClick={() => addItemToBasket(name)}>Add to Basket</Button>
-  </div>
-);
-
-const BasketItem = ({
-  name,
-  quantity,
-  addItemToBasket,
-  removeItemFromBasket,
-}) => (
-  <div>
-    <div>{`${quantity} ${name}`}</div>
-    <Button onClick={() => addItemToBasket(name)}>+</Button>
-    <Button onClick={() => removeItemFromBasket(name)}>-</Button>
-  </div>
-);
 
 const App = () => {
   const [basketItems, setBasketItems] = useState({});
