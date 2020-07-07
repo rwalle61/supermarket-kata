@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('App', () => {
@@ -25,6 +26,23 @@ describe('App', () => {
       render(<App />);
       expect(screen.getByText('Total:')).toBeInTheDocument();
       expect(screen.getByText(/£0.00/)).toBeInTheDocument();
+    });
+  });
+  describe('when user adds an item from shelf to the basket', () => {
+    it.skip('renders that item in the basket', () => {
+      // arrange
+      render(<App />);
+      const shelfItem = screen.getByText('Beans');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+
+      // act
+      userEvent.click(shelfItemButton);
+
+      // assert
+      const basketItem = screen.getByText('1 Beans');
+      expect(basketItem).toBeInTheDocument();
     });
   });
 });

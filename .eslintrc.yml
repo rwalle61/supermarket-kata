@@ -42,5 +42,7 @@ rules:
     - error
   react/jsx-filename-extension:
     - off
+  react/prop-types:
+    - off
   react/forbid-prop-types:
     - off
