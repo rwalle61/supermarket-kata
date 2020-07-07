@@ -6,11 +6,16 @@ const itemIncrementSizes = {
   Oranges: 0.2,
 };
 
+const validItems = Object.keys(itemIncrementSizes);
+
 const strip = (num) => parseFloat(num.toPrecision(12));
 
 const addFloat = (a, b) => strip(a + b);
 
 export const addItemToBasket = (basket, itemName) => {
+  if (!validItems.includes(itemName)) {
+    return basket;
+  }
   const existingQuantity = Object.prototype.hasOwnProperty.call(
     basket,
     itemName,
@@ -27,6 +32,9 @@ export const addItemToBasket = (basket, itemName) => {
 };
 
 export const removeItemFromBasket = (basket, itemName) => {
+  if (!validItems.includes(itemName)) {
+    return basket;
+  }
   const existingQuantity = basket[itemName];
   const decrement = itemIncrementSizes[itemName];
   const newQuantity = addFloat(existingQuantity, -decrement);

@@ -99,19 +99,30 @@ describe('items reducer', () => {
     it('handles initial state', () => {
       expect(items(undefined, {})).toEqual({});
     });
+    it('handles ADD_ITEM_TO_BASKET by ignoring the invalid item', () => {
+      expect(
+        items(
+          {},
+          {
+            type: 'ADD_ITEM_TO_BASKET',
+            name: 'UnknownItem',
+          },
+        ),
+      ).toEqual({});
+    });
+    it('handles REMOVE_ITEM_FROM_BASKET by ignoring the invalid item', () => {
+      expect(
+        items(
+          {},
+          {
+            type: 'REMOVE_ITEM_FROM_BASKET',
+            name: 'UnknownItem',
+          },
+        ),
+      ).toEqual({});
+    });
 
     describe('when state contains no items', () => {
-      it.skip('handles ADD_ITEM_TO_BASKET by rejecting the invalid item', () => {
-        expect(
-          items(
-            {},
-            {
-              type: 'ADD_ITEM_TO_BASKET',
-              name: 'UnknownItem',
-            },
-          ),
-        ).toEqual({});
-      });
       it('handles ADD_ITEM_TO_BASKET by adding the new item', () => {
         expect(
           items(
