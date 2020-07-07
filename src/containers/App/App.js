@@ -4,10 +4,17 @@ import { getTotalPrice, getNewBasketItems } from './App.utils';
 
 const availableItems = ['Beans', 'Coke', 'Oranges'];
 
-const Item = ({ name, addItemToBasket }) => (
+const ShelfItem = ({ name, addItemToBasket }) => (
   <div>
     <div>{name}</div>
     <Button onClick={() => addItemToBasket(name)}>Add to Basket</Button>
+  </div>
+);
+
+const BasketItem = ({ name, quantity, addItemToBasket }) => (
+  <div>
+    <div>{`${quantity} ${name}`}</div>
+    <Button onClick={() => addItemToBasket(name)}>+</Button>
   </div>
 );
 
@@ -22,11 +29,16 @@ const App = () => {
     <div>
       <div>Supermarket Items</div>
       {availableItems.map((name) => (
-        <Item key={name} name={name} addItemToBasket={addItemToBasket} />
+        <ShelfItem key={name} name={name} addItemToBasket={addItemToBasket} />
       ))}
       <div>Basket</div>
       {Object.entries(basketItems).map(([name, quantity]) => (
-        <Item key={name} name={`${quantity} ${name}`} />
+        <BasketItem
+          key={name}
+          name={name}
+          quantity={quantity}
+          addItemToBasket={addItemToBasket}
+        />
       ))}
       <div>
         Total:

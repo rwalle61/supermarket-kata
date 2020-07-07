@@ -77,6 +77,27 @@ describe('App', () => {
       expect(screen.getByText('Total:')).toBeInTheDocument();
       expect(screen.getByText('£0.40')).toBeInTheDocument();
     });
+    it('renders a button to add more of the item to the basket', () => {
+      render(<App />);
+      const shelfItem = screen.getByText('Beans');
+      const shelfItemButton = within(shelfItem.parentElement).getByRole(
+        'button',
+      );
+      userEvent.click(shelfItemButton);
+
+      const basketItem = screen.getByText('1 Beans');
+      const basketItemIncrementButton = within(basketItem.parentElement)
+        .getByText('+')
+        .closest('button');
+      userEvent.click(basketItemIncrementButton);
+
+      const newBasketItems = screen.getByText('Basket').parentElement;
+      const newBasketItem = within(newBasketItems).getByText('2 Beans');
+      expect(newBasketItem).toBeInTheDocument();
+
+      expect(screen.getByText('Total:')).toBeInTheDocument();
+      expect(screen.getByText('£1.00')).toBeInTheDocument();
+    });
   });
   describe('when user adds 2 of an item from shelf to the basket', () => {
     it('renders 2 increments of that item in the basket', () => {
