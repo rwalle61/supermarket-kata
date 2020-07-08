@@ -16,7 +16,7 @@ const Basket = ({ items }) => (
       ))}
     </ListGroup>
     <h6 className='text-center'>
-      Total:
+      {'Total: '}
       <b>{`£${getTotalPrice(items)}`}</b>
     </h6>
   </div>
