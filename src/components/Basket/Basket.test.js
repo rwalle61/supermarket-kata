@@ -14,6 +14,7 @@ describe('Basket', () => {
   });
   it('renders the default basket price to 2DP', () => {
     render(<Basket items={{}} />);
+    // expect(screen.getByText(/Total:/)).toBeInTheDocument();
     expect(screen.getByText('Total:')).toBeInTheDocument();
     expect(screen.getByText('£0.00')).toBeInTheDocument();
   });
