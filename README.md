@@ -1,5 +1,7 @@
 # Supermarket Kata
 
+Try it out at https://supermarketkata.netlify.app/
+
 ## Table of Contents
 
 - [Overview](#overview)
