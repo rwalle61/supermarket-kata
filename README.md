@@ -1,38 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Supermarket Kata
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+- [Running the Tests](#running-the-tests)
 
-### `yarn start`
+## Overview
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a simple ReactJS front-end that allows a user to add/remove items into a basket and have the basket total automatically updated based on item price and applicable discounts.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+I have:
 
-### `yarn test`
+1. used functional programming over OO
+2. used javascript
+3. not needed to use any functional libraries such as `lodash-fp`
+4. used bootstrap + a little bit of custom styling
+5. used redux
+6. written clean code
+7. used TDD - see the git history. As the complexity of this task was mainly in the effects of the add/remove items buttons, I mainly used integration tests to be confident about these interactions. I unit tested key functions (e.g. pricing items) to cover edge cases. I used acceptance and integration tests to ensure that important business rules are protected when changes come later.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `yarn build`
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+[Download Node.js v8 or above](https://github.com/nodejs/node#download)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installing
 
-### `yarn eject`
+Clone the repo
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone git@github.com:rwalle61/supermarket-kata.git
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Install dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+yarn install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Run the app
+
+```bash
+yarn start
+```
+
+The app will be running at `http://localhost:3000`.
+
+## Running the Tests
+
+### Jest watch mode
+
+```bash
+yarn test
+```
+
+### All tests
+
+```bash
+yarn test:ci
+```
